@@ -1,33 +1,7 @@
 #!/bin/bash
 
 ###ssh-add
-check_ssh_agent() {
-  local ssh_dir="$HOME/.ssh"
 
-  # Get a list of files starting with 'id' and not ending with 'pub', '_backup', or '_bak'
-  local key_files=()
-  while IFS= read -r -d '' file; do
-    key_files+=("$file")
-  done < <(find "$ssh_dir" -type f -name 'id*' ! -name '*pub' ! -name '*_backup' ! -name '*_bak' -print0)
-
-  # Check if each key file is added to the SSH agent
-  for key_file in "${key_files[@]}"; do
-    # Extract the key name from the file path
-    local key_name="${key_file##*/}"
-
-    # Check if the key is already added to the SSH agent
-    if ssh-add -l | grep -q "$key_name"; then
-      echo "Key '$key_name' is already added to the SSH agent."
-    else
-      # Add the key to the SSH agent
-      if ssh-add "$key_file"; then
-        echo "Key '$key_name' added to the SSH agent."
-      else
-        echo "Failed to add key '$key_name' to the SSH agent."
-      fi
-    fi
-  done
-}
 
 ###ssh-add
 check_ssh_agent() {
