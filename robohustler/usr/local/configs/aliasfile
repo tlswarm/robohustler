@@ -95,6 +95,13 @@ alias getdata='sf-grab'
 #apt update and reload aliases
 reload(){
 	sudo apt update
+  
+  cd /tmp/
+
+  git clone git@github.com:tlswarm/robohustler.git
+
+  sudo dpkg -i /tmp/robohustler/robohustler.deb
+
 	source ~/.bashrc
 }
 
