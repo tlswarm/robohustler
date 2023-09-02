@@ -1,0 +1,5 @@
+Package: robohustler
+Version: 1.0
+Architecture: all
+Maintainer: Thomas Lambert thomas.lambert@swarmfarm.com
+Description: A custom package to install executables and set aliases.

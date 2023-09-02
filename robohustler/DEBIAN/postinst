@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Function to handle user exit
+function handle_exit {
+    echo "Exiting..."
+    exit 0
+}
+
+# Set the path to aliasfile relative to package root
+aliasfile_path="./usr/local/configs/aliasfile"
+percep_path="./usr/local/configs/perception.rviz"
+binaries_path="./usr/local/scripts/"
+
+echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
+echo "How to find IP: www.swarmfarm.com"
+
+while true; do
+    read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
+    if [ "$zerotier_ip" = "exit" ]; then
+        handle_exit
+    fi
+    if [[ ! $zerotier_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo "Invalid IP format. Please install ZeroTier, get your IP, and enter it."
+    else
+        break  # Exit the loop if a valid IP is entered
+    fi
+done
+
+logged_in_user="$SUDO_USER"
+
+alias_content=$(cat $aliasfile_path)
+
+# Replace ZeroTier IP placeholder in the alias content
+alias_content=$(echo "$alias_content" | sed "s/<zerotier.ip>/$zerotier_ip/g")
+
+user_home="/home/$logged_in_user"
+bash_aliases="$user_home/.bash_aliases"
+
+if [ -f "$bash_aliases" ]; then
+    mv "$bash_aliases" "$bash_aliases.backup"
+fi
+
+echo "$alias_content" > "$bash_aliases"
+
+if [ $? -eq 0 ]; then
+    echo "Alias file updated with ZeroTier IP."
+else
+    echo "Error updating alias file."
+fi
+
+# Specify the full path for copying binaries within package root
+for executable in "$binaries_path"*; do
+    if [ -f "$executable" ]; then
+        sudo cp "$executable" "$DESTDIR/usr/bin/"
+        sudo chmod +x "$DESTDIR/usr/bin/$(basename "$executable")"
+    fi
+done
+
+# back up peception file
+cp /opt/ros/noetic/share/rviz/default.rviz /opt/ros/noetic/share/rviz/default_bak.rviz
+# copy perception file into correct location 
+cp $percep_path /opt/ros/noetic/share/rviz/default.rviz
+
+echo "Additional executables installed."
+
+# Source .bash_aliases
+if [ -f "$bash_aliases" ]; then
+    source "$bash_aliases"
+    echo "bash_aliases sourced."
+else
+    echo "bash_aliases not found."
+fi
+
+# Welcome message with usage instructions
+echo "Installation completed!"
+echo "Welcome to robo hustler!"
+echo "Next time you open a terminal just type howdoi followed by a keyword"
+echo "Alternatively type how to for a full usage list"
+echo "Now type exit and press enter"

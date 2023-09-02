@@ -1,0 +1,209 @@
+#!/bin/bash
+
+###ssh-add
+check_ssh_agent() {
+  local ssh_dir="$HOME/.ssh"
+
+  # Get a list of files starting with 'id' and not ending with 'pub', '_backup', or '_bak'
+  local key_files=()
+  while IFS= read -r -d '' file; do
+    key_files+=("$file")
+  done < <(find "$ssh_dir" -type f -name 'id*' ! -name '*pub' ! -name '*_backup' ! -name '*_bak' -print0)
+
+  # Check if each key file is added to the SSH agent
+  for key_file in "${key_files[@]}"; do
+    # Extract the key name from the file path
+    local key_name="${key_file##*/}"
+
+    # Check if the key is already added to the SSH agent
+    if ssh-add -l | grep -q "$key_name"; then
+      echo "Key '$key_name' is already added to the SSH agent."
+    else
+      # Add the key to the SSH agent
+      if ssh-add "$key_file"; then
+        echo "Key '$key_name' added to the SSH agent."
+      else
+        echo "Failed to add key '$key_name' to the SSH agent."
+      fi
+    fi
+  done
+}
+
+###ssh-add
+check_ssh_agent() {
+  local ssh_dir="$HOME/.ssh"
+
+  # Get a list of files starting with 'id' and not ending with 'pub', '_backup', or '_bak'
+  local key_files=()
+  while IFS= read -r -d '' file; do
+    key_files+=("$file")
+  done < <(find "$ssh_dir" -type f -name 'id*' ! -name '*pub' ! -name '*_backup' ! -name '*_bak' -print0)
+
+  # Check if each key file is added to the SSH agent
+  for key_file in "${key_files[@]}"; do
+    # Extract the key name from the file path
+    local key_name="${key_file##*/}"
+
+    # Check if the key is already added to the SSH agent
+    if ssh-add -l | grep -q "$key_name"; then
+      echo "Key '$key_name' is already added to the SSH agent."
+    else
+      # Add the key to the SSH agent
+      if ssh-add "$key_file"; then
+        echo "Key '$key_name' added to the SSH agent."
+      else
+        echo "Failed to add key '$key_name' to the SSH agent."
+      fi
+    fi
+  done
+}
+
+#source ROS
+source /opt/ros/noetic/setup.bash
+
+# Retrieve the current user name
+export current_user=$(whoami)
+
+# Export the user name to the SF_USR variable
+export SF_USR="$current_user"
+
+###ZerotierIP
+export ZT_IP=<zerotier.ip>
+
+### PROCESS ALIASES
+
+### ROS Access Client
+stream(){
+	ros-access-client -f $ZT_IP $(getrobotname $1)
+}
+
+
+### check net
+alias checknet="ping 8.8.8.8"
+
+### Get Traversal Data
+trav() {
+    swarmfarm-route-analyser -c
+}
+
+### ssh into robot
+alias rconnect='sfssh'
+
+### get logs
+alias getdata='sf-grab'
+
+#apt update and reload aliases
+reload(){
+	sudo apt update
+	source ~/.bashrc
+}
+
+### PLOTTING ROS TOPICS
+
+### Robot Gps Heading
+alias heading='rqt_plot /SwarmbotLocalisation/gps/fix/heading_track_over_ground /SwarmbotLocalisation/gps/fix/dual_antenna_heading /SwarmbotLocalisation/gps/fix/heading/data'
+
+### Attatchment Spray Pressure
+alias a-press='rqt_plot /SwarmbotAttachments/sprayer_v1/spray_pressure /SwarmbotAttachments/sprayer_v1/spray_pressure_reference'
+
+### Robot Wheel Encoders
+alias wheels='rqt_plot /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_right /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_right'
+
+### Robot Drive Hydraulic Pressure
+alias d-press='rqt_plot /SwarmbotPlcController/hardware_responses/front_mobility_pump_pressure /SwarmbotPlcController/hardware_responses/rear_mobility_pump_pressure'
+
+### Steering tuning
+alias steer1='rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current'
+
+## Robot Steering Data
+alias steer='rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current/front /SwarmbotPlatformController/distance_to_path/current/rear /SwarmbotPlatformController/distance_to_path/current'
+
+### Robot Drive Data
+alias drive='rqt_plot /SwarmbotPlcController/drive_velocity_command /SwarmbotPlcController/hardware_responses/wheel_linear_vel_average /SwarmbotLocalisation/gps/fix/velocities/ground'
+
+alias plot='plot_can'
+
+### Utilities
+get_focal_zone() {
+
+	path="/var/lib/swarmfarm/swarmbot/swarmbotCommon/PaddockDefinitions/"
+
+	for farm in "$path*"; do
+        for paddock in $farm/*; do
+			for file in $paddock/*.txt; do
+
+				if [[ "$file" != *"definition.txt"* ]] && [[ "$file" != *"*.txt"* ]]; then
+
+					echo -n "From the file: $file, the utm zone is "
+
+					IFS='	' read -ra llarray <<< $(head -n 1 "$file")
+					export my_utm_zone="$(~/SystemUtilities/swarmfarm-lawries-scripts/src/python/swarmfarm_latlong_to_utm ${llarray[0]} ${llarray[1]} -u)"
+					echo "$my_utm_zone"
+					return
+				fi
+			done
+        done
+    done
+}
+
+
+get_dir() {
+
+    case "$1" in
+
+        canlog | can | can_log)
+            echo "/var/log/swarmfarm/swarmbot/can_logs/"
+            ;;
+        cmn | common)
+            echo "/var/lib/swarmfarm/swarmbot/swarmbotCommon"
+            ;;
+        config)
+            echo "/etc/swarmfarm/swarmbot/"
+            ;;
+        home)
+            echo "/home/$username/"
+            ;;
+        bag)
+            echo "/var/log/swarmfarm/swarmbot/bagfiles/"
+            ;;
+        attach | attachment | acfg | aconfig)
+            echo "/etc/swarmfarm/can-utils/"
+            ;;
+        workedareas | wa)
+            echo "/var/log/swarmfarm/swarmbot/workedAreas/"
+            ;;
+        paths | p)
+            echo "/var/lib/swarmfarm/swarmbot/planner/"
+            ;;
+        *)
+            echo "$1"
+            ;;
+
+    esac
+}
+sfros()
+{
+	source /etc/profile.d/swarmfarm-ros-access-client.sh
+	#ros-access-client $(getrobotname $1)
+	ros-access-client -f $ZT_IP $(getrobotname $1)
+}
+
+copy() {
+
+	local args
+	local nonargs
+
+	args=$(get_args "$@")
+	nonargs=$(clear_args "$@")
+
+	set -- $nonargs
+
+	local path
+
+	echo $2
+
+	path=$(get_dir "$2")
+
+	echo "rsync --progress --compress $(getrobotstring $1 $args):$path$3 $4"
+	rsync --progress --compress $(getrobotstring $1 $args):$path$3 $4
+}

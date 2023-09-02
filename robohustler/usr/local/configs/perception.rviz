@@ -1,0 +1,871 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.5166666507720947
+    Tree Height: 719
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: All Point Clouds
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 1000
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Pose
+      Queue Size: 10
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic: /SwarmbotLocalisation/robot_pose
+      Unreliable: false
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 1000
+      Frames:
+        All Enabled: true
+        centre_bumper_link:
+          Value: true
+        centre_feeler_link:
+          Value: true
+        centre_obstacle_sensor_3D_link:
+          Value: true
+        centre_obstacle_sensor_x_dist_3D_link:
+          Value: true
+        centre_obstacle_sensor_x_rot_3D_link:
+          Value: true
+        centre_obstacle_sensor_y_dist_3D_link:
+          Value: true
+        centre_obstacle_sensor_y_rot_3D_link:
+          Value: true
+        centre_obstacle_sensor_z_dist_3D_link:
+          Value: true
+        centre_obstacle_sensor_z_rot_3D_link:
+          Value: true
+        chassis_2D_link:
+          Value: true
+        chassis_2D_utm_link:
+          Value: true
+        chassis_3D_link:
+          Value: true
+        ebox_link:
+          Value: true
+        engine_cover_link:
+          Value: true
+        front_panel_3D_link:
+          Value: true
+        front_panel_link:
+          Value: true
+        gps_link:
+          Value: true
+        hitch_link:
+          Value: true
+        implement_centre_link:
+          Value: true
+        init_fix_accurate_link:
+          Value: true
+        init_fix_link:
+          Value: true
+        left_back_link:
+          Value: true
+        left_bumper_link:
+          Value: true
+        left_feeler_link:
+          Value: true
+        left_front_wheel_front_outer_corner_link:
+          Value: true
+        left_front_wheel_link:
+          Value: true
+        left_front_wheel_rear_outer_corner_link:
+          Value: true
+        left_implement_rear_link:
+          Value: true
+        left_obstacle_sensor_3D_link:
+          Value: true
+        left_obstacle_sensor_x_dist_3D_link:
+          Value: true
+        left_obstacle_sensor_x_rot_3D_link:
+          Value: true
+        left_obstacle_sensor_y_dist_3D_link:
+          Value: true
+        left_obstacle_sensor_y_rot_3D_link:
+          Value: true
+        left_obstacle_sensor_z_dist_3D_link:
+          Value: true
+        left_obstacle_sensor_z_rot_3D_link:
+          Value: true
+        left_rear_wheel_front_outer_corner_link:
+          Value: true
+        left_rear_wheel_link:
+          Value: true
+        left_rear_wheel_rear_outer_corner_link:
+          Value: true
+        left_wingtip_link:
+          Value: true
+        rear_chassis_2D_link:
+          Value: true
+        right_back_link:
+          Value: true
+        right_bumper_link:
+          Value: true
+        right_feeler_link:
+          Value: true
+        right_front_wheel_front_outer_corner_link:
+          Value: true
+        right_front_wheel_link:
+          Value: true
+        right_front_wheel_rear_outer_corner_link:
+          Value: true
+        right_implement_rear_link:
+          Value: true
+        right_obstacle_sensor_3D_link:
+          Value: true
+        right_obstacle_sensor_x_dist_3D_link:
+          Value: true
+        right_obstacle_sensor_x_rot_3D_link:
+          Value: true
+        right_obstacle_sensor_y_dist_3D_link:
+          Value: true
+        right_obstacle_sensor_y_rot_3D_link:
+          Value: true
+        right_obstacle_sensor_z_dist_3D_link:
+          Value: true
+        right_obstacle_sensor_z_rot_3D_link:
+          Value: true
+        right_rear_wheel_front_outer_corner_link:
+          Value: true
+        right_rear_wheel_link:
+          Value: true
+        right_rear_wheel_rear_outer_corner_link:
+          Value: true
+        right_wingtip_link:
+          Value: true
+        simulation_link:
+          Value: true
+        steering_link:
+          Value: true
+        utm_link:
+          Value: true
+      Marker Alpha: 1
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        simulation_link:
+          chassis_2D_link:
+            chassis_2D_utm_link:
+              {}
+            ebox_link:
+              {}
+            engine_cover_link:
+              {}
+            front_panel_link:
+              centre_bumper_link:
+                centre_feeler_link:
+                  left_feeler_link:
+                    {}
+                  right_feeler_link:
+                    {}
+                left_bumper_link:
+                  {}
+                right_bumper_link:
+                  {}
+            gps_link:
+              {}
+            left_front_wheel_link:
+              left_front_wheel_front_outer_corner_link:
+                {}
+              left_front_wheel_rear_outer_corner_link:
+                {}
+            right_front_wheel_link:
+              right_front_wheel_front_outer_corner_link:
+                {}
+              right_front_wheel_rear_outer_corner_link:
+                {}
+            steering_link:
+              rear_chassis_2D_link:
+                hitch_link:
+                  implement_centre_link:
+                    left_wingtip_link:
+                      left_implement_rear_link:
+                        {}
+                    right_wingtip_link:
+                      right_implement_rear_link:
+                        {}
+                left_back_link:
+                  {}
+                left_rear_wheel_link:
+                  left_rear_wheel_front_outer_corner_link:
+                    {}
+                  left_rear_wheel_rear_outer_corner_link:
+                    {}
+                right_back_link:
+                  {}
+                right_rear_wheel_link:
+                  right_rear_wheel_front_outer_corner_link:
+                    {}
+                  right_rear_wheel_rear_outer_corner_link:
+                    {}
+          chassis_3D_link:
+            front_panel_3D_link:
+              centre_obstacle_sensor_x_dist_3D_link:
+                centre_obstacle_sensor_y_dist_3D_link:
+                  centre_obstacle_sensor_z_dist_3D_link:
+                    centre_obstacle_sensor_x_rot_3D_link:
+                      centre_obstacle_sensor_y_rot_3D_link:
+                        centre_obstacle_sensor_z_rot_3D_link:
+                          centre_obstacle_sensor_3D_link:
+                            {}
+              left_obstacle_sensor_x_dist_3D_link:
+                left_obstacle_sensor_y_dist_3D_link:
+                  left_obstacle_sensor_z_dist_3D_link:
+                    left_obstacle_sensor_x_rot_3D_link:
+                      left_obstacle_sensor_y_rot_3D_link:
+                        left_obstacle_sensor_z_rot_3D_link:
+                          left_obstacle_sensor_3D_link:
+                            {}
+              right_obstacle_sensor_x_dist_3D_link:
+                right_obstacle_sensor_y_dist_3D_link:
+                  right_obstacle_sensor_z_dist_3D_link:
+                    right_obstacle_sensor_x_rot_3D_link:
+                      right_obstacle_sensor_y_rot_3D_link:
+                        right_obstacle_sensor_z_rot_3D_link:
+                          right_obstacle_sensor_3D_link:
+                            {}
+          init_fix_accurate_link:
+            {}
+          init_fix_link:
+            {}
+          utm_link:
+            {}
+      Update Interval: 0
+      Value: true
+    - Alpha: 1
+      Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: Axes
+      Radius: 0.10000000149011612
+      Reference Frame: <Fixed Frame>
+      Show Trail: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        centre_bumper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        centre_feeler_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        centre_obstacle_sensor_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        centre_obstacle_sensor_x_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_x_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_x_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_x_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_y_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_y_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_y_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_y_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_z_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_z_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_z_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        centre_obstacle_sensor_z_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        chassis_2D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        chassis_2D_utm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        chassis_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ebox_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        engine_cover_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_panel_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        front_panel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        gps_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hitch_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        implement_centre_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_back_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_bumper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_feeler_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_front_wheel_front_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_front_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_front_wheel_rear_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_implement_rear_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_obstacle_sensor_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_obstacle_sensor_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_obstacle_sensor_x_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_x_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_x_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_x_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_y_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_y_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_y_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_y_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_z_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_z_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_z_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_obstacle_sensor_z_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_rear_wheel_front_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_rear_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_rear_wheel_rear_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_wingtip_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_chassis_2D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_back_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_bumper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_feeler_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_front_wheel_front_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_front_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_front_wheel_rear_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_implement_rear_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_obstacle_sensor_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_obstacle_sensor_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_obstacle_sensor_x_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_x_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_x_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_x_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_y_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_y_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_y_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_y_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_z_dist_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_z_dist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_z_rot_3D_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_obstacle_sensor_z_rot_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_rear_wheel_front_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_rear_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_rear_wheel_rear_outer_corner_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_wingtip_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        steering_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 3.503671884536743
+        Min Value: 0.8728646039962769
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: AxisColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: All Point Clouds
+      Position Transformer: XYZ
+      Queue Size: 1
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.05000000074505806
+      Style: Spheres
+      Topic: /SwarmbotSafety/perception/data_sanitiser/fused_point_cloud_throttled
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Class: jsk_rviz_plugin/PolygonArray
+      Color: 25; 255; 0
+      Enabled: true
+      Name: All Obstacles
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/blocking_obstacles
+      Unreliable: false
+      Value: true
+      coloring: Auto
+      enable lighting: true
+      normal length: 0.10000000149011612
+      only border: true
+      show normal: false
+    - Alpha: 0.10000000149011612
+      Class: rviz/Polygon
+      Color: 255; 170; 0
+      Enabled: false
+      Name: Robot Total Field of View
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/robot/total
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 170; 0; 0
+      Enabled: true
+      Name: Robot Stopping Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/robot/stop
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 0; 85; 255
+      Enabled: true
+      Name: Robot Slowing Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/robot/slow
+      Unreliable: false
+      Value: true
+    - Alpha: 0.10000000149011612
+      Class: rviz/Polygon
+      Color: 255; 170; 0
+      Enabled: false
+      Name: Left Wheel Track Total Field of View
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/left_wheel_track/total
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 204; 98; 5
+      Enabled: true
+      Name: Left Wheel Track Stopping Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/left_wheel_track/stop
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 10; 157; 255
+      Enabled: true
+      Name: Left Wheel Track Slowing Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/left_wheel_track/slow
+      Unreliable: false
+      Value: true
+    - Alpha: 0.10000000149011612
+      Class: rviz/Polygon
+      Color: 255; 170; 0
+      Enabled: false
+      Name: Right Wheel Track Total Field of View
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/right_wheel_track/total
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 204; 98; 5
+      Enabled: true
+      Name: Right Wheel Track Stopping Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/right_wheel_track/stop
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 10; 157; 255
+      Enabled: true
+      Name: Right Wheel Track Slowing Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/right_wheel_track/slow
+      Unreliable: false
+      Value: true
+    - Alpha: 0.10000000149011612
+      Class: rviz/Polygon
+      Color: 255; 170; 0
+      Enabled: false
+      Name: Implement Total Field of View
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/implement/total
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 227; 151; 0
+      Enabled: true
+      Name: Implement Stopping Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/implement/stop
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 207; 207; 0
+      Enabled: true
+      Name: Implement Slowing Region
+      Queue Size: 10
+      Topic: /SwarmbotSafety/perception/response_controller/field_of_view/regions/implement/slow
+      Unreliable: false
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Default Light: true
+    Fixed Frame: init_fix_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
+      Topic: /init_fix
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 17.369640350341797
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View: 0.7853981852531433
+      Focal Point:
+        X: -1.2457023859024048
+        Y: -2.2322373390197754
+        Z: 0.5185391306877136
+      Focal Shape Fixed Size: false
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.8553981184959412
+      Target Frame: chassis_2D_link
+      Yaw: 2.2553980350494385
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1016
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000016a0000035afc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d0000035a000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f0000035afc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d0000035a000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007380000003efc0100000002fb0000000800540069006d0065010000000000000738000002eb00fffffffb0000000800540069006d00650100000000000004500000000000000000000004b30000035a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1848
+  X: 72
+  Y: 27

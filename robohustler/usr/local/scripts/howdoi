@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Iterate over all command-line arguments
+for arg in "$@"; do
+    # Concatenate the current argument to the string
+    concatenated_string="$concatenated_string $arg"
+done
+
+
+howto | grep $concatenated_string
