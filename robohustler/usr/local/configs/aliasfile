@@ -107,7 +107,7 @@ reload(){
     fi
 
 
-    git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb && cd && sudo rm -r /tmp/bootstrapper/ /tmp/robohustler/
+    git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb && cd && sudo rm -r /tmp/robohustler/
 
     source ~/.bashrc
 
