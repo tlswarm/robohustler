@@ -1,6 +1,5 @@
 #!/bin/bash
 
-###ssh-add
 check_ssh_agent() {
   local ssh_dir="$HOME/.ssh"
 
@@ -29,24 +28,13 @@ check_ssh_agent() {
   done
 }
 
-#source ROS
 source /opt/ros/noetic/setup.bash
 
-# Retrieve the current user name
 export current_user=$(whoami)
 
-# Export the user name to the SF_USR variable
 export SF_USR="$current_user"
 
-###ZerotierIP
 export ZT_IP=<zerotier.ip>
-
-
-
-stream(){
-ros-access-client -f $ZT_IP $(getrobotname $1)
-}
-
 
 trav() {
     swarmfarm-route-analyser -c
@@ -60,10 +48,7 @@ alias getdata='sf-grab'
 
 alias sfalogin='swarmfarm-auth-login'
 
-percep(){
-ros-access-client -f $ZT_IP $(getrobotname $1) 
-rviz
-}
+alias plot='plot_can'
 
 checkon(){
 sfany ping $@ -i
@@ -77,46 +62,55 @@ forward(){
     ssh -D 1081 $SF_USR@v-$(getrobotname $1).swarmfarm.com
 }
 
-#apt update and reload aliases
-reload(){
-	sudo apt update
-  
-  cd /tmp/
-
-  git clone git@github.com:tlswarm/robohustler.git
-
-  sudo dpkg -i /tmp/robohustler/robohustler.deb
-
-	source ~/.bashrc
+percep(){
+ros-access-client -f $ZT_IP $(getrobotname $1) 
+rviz
 }
 
-### PLOTTING ROS TOPICS
-
-### Robot Gps Heading
 heading(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
     rqt_plot /SwarmbotLocalisation/gps/fix/heading_track_over_ground /SwarmbotLocalisation/gps/fix/dual_antenna_heading /SwarmbotLocalisation/gps/fix/heading/data
 }
 
-### Attatchment Spray Pressure
-alias a-press='rqt_plot /SwarmbotAttachments/sprayer_v1/spray_pressure /SwarmbotAttachments/sprayer_v1/spray_pressure_reference'
+a-press(){
+    ros-access-client -f $ZT_IP $(getrobotname $1)
+    rqt_plot /SwarmbotAttachments/sprayer_v1/spray_pressure /SwarmbotAttachments/sprayer_v1/spray_pressure_reference
+}
 
-### Robot Wheel Encoders
-alias wheels='rqt_plot /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_right /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_right'
+wheels(){
+    ros-access-client -f $ZT_IP $(getrobotname $1)
+    rqt_plot /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_right /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_right
+}
 
-### Robot Drive Hydraulic Pressure
-alias d-press='rqt_plot /SwarmbotPlcController/hardware_responses/front_mobility_pump_pressure /SwarmbotPlcController/hardware_responses/rear_mobility_pump_pressure'
+d-press(){
+    ros-access-client -f $ZT_IP $(getrobotname $1)
+    rqt_plot /SwarmbotPlcController/hardware_responses/front_mobility_pump_pressure /SwarmbotPlcController/hardware_responses/rear_mobility_pump_pressure
+}
 
-### Steering tuning
-alias steer1='rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current'
+steer(){
+    ros-access-client -f $ZT_IP $(getrobotname $1)
+    rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current/front /SwarmbotPlatformController/distance_to_path/current/rear /SwarmbotPlatformController/distance_to_path/current
+}
 
-## Robot Steering Data
-alias steer='rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current/front /SwarmbotPlatformController/distance_to_path/current/rear /SwarmbotPlatformController/distance_to_path/current'
+drive(){
+    ros-access-client -f $ZT_IP $(getrobotname $1)
+    rqt_plot /SwarmbotPlcController/drive_velocity_command /SwarmbotPlcController/hardware_responses/wheel_linear_vel_average /SwarmbotLocalisation/gps/fix/velocities/ground
+}
 
-### Robot Drive Data
-alias drive='rqt_plot /SwarmbotPlcController/drive_velocity_command /SwarmbotPlcController/hardware_responses/wheel_linear_vel_average /SwarmbotLocalisation/gps/fix/velocities/ground'
+reload(){
+    sudo apt update
+  
+    cd /tmp/
 
-alias plot='plot_can'
+    git clone git@github.com:tlswarm/robohustler.git
+
+    sudo dpkg -i /tmp/robohustler/robohustler.deb
+
+    source ~/.bashrc
+
+    sudo rm -r /tmp/bootstrapper/ /tmp/robohustler/
+
+}
 
 ### Utilities
 get_focal_zone() {
