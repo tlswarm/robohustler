@@ -102,13 +102,13 @@ reload(){
   
     cd /tmp/
 
-    git clone git@github.com:tlswarm/robohustler.git
+    sudo rm -r /tmp/bootstrapper/ /tmp/robohustler/
 
-    sudo dpkg -i /tmp/robohustler/robohustler.deb
-
-    source ~/.bashrc
+    git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb
 
     sudo rm -r /tmp/bootstrapper/ /tmp/robohustler/
+
+    source ~/.bashrc
 
 }
 
