@@ -30,8 +30,19 @@ getnum(){
 getrobotname $1
 }
 
-forward(){
+4G-web(){
     ssh -D 1081 $SF_USR@v-$(getrobotname $1).swarmfarm.com
+    firefox http://192.168.51.1/cgi-bin/luci
+}
+
+WiFi-web(){
+    ssh -D 1081 $SF_USR@v-$(getrobotname $1).swarmfarm.com
+    firefox http://10.98.98.1/webfig/
+}
+
+GPS-web(){
+    ssh -D 1081 $SF_USR@v-$(getrobotname $1).swarmfarm.com
+    firefox http://192.168.252.50/priv/webapp.html
 }
 
 percep(){

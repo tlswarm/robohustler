@@ -2,6 +2,11 @@
 
 # Function to display usage instructions
 usage() {
+for arg in "$@"; do
+    lowercase_arg=$(echo "$arg" | tr '[:upper:]' '[:lower:]')
+done
+
+
   echo "Usage: howdoi <search-string>"
   echo "Options:"
   echo "  -h, --help    Display this help message"
