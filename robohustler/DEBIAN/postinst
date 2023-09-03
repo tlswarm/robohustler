@@ -18,29 +18,24 @@ handle_exit() {
 }
 
 # Check if ZT_IP is set in the environment
+if [ -n "$ZT_IP" ]; then
+    zerotier_ip="$ZT_IP"
+else
+    echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
+    echo "How to find IP: www.swarmfarm.com"
 
-    if grep -q "^export ZT_IP=" ~/.bash_aliases; then
-        zerotier_ip=$(grep "^export ZT_IP=" ~/.bash_aliases | cut -d= -f2)
-        echo "ZeroTier IP: $zerotier_ip"
-    else
-        echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
-
-        while true; do
-            read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
-            if [ "$zerotier_ip" = "exit" ]; then
-                handle_exit
-            fi
-            if [[ ! $zerotier_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-                echo "Invalid IP format. Please install ZeroTier, get your IP, and enter it."
-            else
-                # If a valid IP is entered, save it to ~/.bash_aliases
-                echo "export ZT_IP=$zerotier_ip" >> ~/.bash_aliases
-                script-y  # Replace 'script-y' with the command you want to run if ZT_IP is not set
-                break
-            fi
-        done
-    fi
-
+    while true; do
+        read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
+        if [ "$zerotier_ip" = "exit" ]; then
+            handle_exit
+        fi
+        if [[ ! $zerotier_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid IP format. Please install ZeroTier, get your IP, and enter it."
+        else
+            break  # Exit the loop if a valid IP is entered
+        fi
+    done
+fi
 
 
 
