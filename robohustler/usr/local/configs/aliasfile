@@ -69,31 +69,37 @@ rviz
 
 heading(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
+    sleep 2
     rqt_plot /SwarmbotLocalisation/gps/fix/heading_track_over_ground /SwarmbotLocalisation/gps/fix/dual_antenna_heading /SwarmbotLocalisation/gps/fix/heading/data
 }
 
 a-press(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
+    sleep 2
     rqt_plot /SwarmbotAttachments/sprayer_v1/spray_pressure /SwarmbotAttachments/sprayer_v1/spray_pressure_reference
 }
 
 wheels(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
+    sleep 2
     rqt_plot /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_right /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_right
 }
 
 d-press(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
+    sleep 2
     rqt_plot /SwarmbotPlcController/hardware_responses/front_mobility_pump_pressure /SwarmbotPlcController/hardware_responses/rear_mobility_pump_pressure
 }
 
 steer(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
+    sleep 2
     rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current/front /SwarmbotPlatformController/distance_to_path/current/rear /SwarmbotPlatformController/distance_to_path/current
 }
 
 drive(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
+    sleep 2
     rqt_plot /SwarmbotPlcController/drive_velocity_command /SwarmbotPlcController/hardware_responses/wheel_linear_vel_average /SwarmbotLocalisation/gps/fix/velocities/ground
 }
 
