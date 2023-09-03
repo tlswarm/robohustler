@@ -102,7 +102,10 @@ reload(){
   
     cd /tmp/
 
-    sudo rm -r /tmp/bootstrapper/ /tmp/robohustler/
+    if [ -d "/tmp/robohustler/" ]; then
+        sudo rm -r "/tmp/robohustler/"
+    fi
+
 
     git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb
 
