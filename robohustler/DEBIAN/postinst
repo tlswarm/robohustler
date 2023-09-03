@@ -20,7 +20,7 @@ handle_exit() {
 }
 
 # Check if ZT_IP is set in the environment
-txt(){
+
     if grep -q "^export ZT_IP=" ~/.bash_aliases; then
         zerotier_ip=$(grep "^export ZT_IP=" ~/.bash_aliases | cut -d= -f2)
         echo "ZeroTier IP: $zerotier_ip"
@@ -43,7 +43,7 @@ txt(){
         done
     fi
 
-}
+
 
 
 logged_in_user="$SUDO_USER"
