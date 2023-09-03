@@ -11,8 +11,6 @@ aliasfile_path="./usr/local/configs/aliasfile"
 percep_path="./usr/local/configs/perception.rviz"
 binaries_path="./usr/local/scripts/"
 
-#!/bin/bash
-
 # Function to handle exit
 handle_exit() {
     echo "Exiting..."
