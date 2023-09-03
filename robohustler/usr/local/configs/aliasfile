@@ -1,9 +1,6 @@
 #!/bin/bash
 
 ###ssh-add
-
-
-###ssh-add
 check_ssh_agent() {
   local ssh_dir="$HOME/.ssh"
 
@@ -44,27 +41,41 @@ export SF_USR="$current_user"
 ###ZerotierIP
 export ZT_IP=<zerotier.ip>
 
-### PROCESS ALIASES
 
-### ROS Access Client
+
 stream(){
-	ros-access-client -f $ZT_IP $(getrobotname $1)
+ros-access-client -f $ZT_IP $(getrobotname $1)
 }
 
 
-### check net
-alias checknet="ping 8.8.8.8"
-
-### Get Traversal Data
 trav() {
     swarmfarm-route-analyser -c
 }
 
-### ssh into robot
+alias checknet="ping 8.8.8.8"
+
 alias rconnect='sfssh'
 
-### get logs
 alias getdata='sf-grab'
+
+alias sfalogin='swarmfarm-auth-login'
+
+percep(){
+ros-access-client -f $ZT_IP $(getrobotname $1) 
+rviz
+}
+
+checkon(){
+sfany ping $@ -i
+}
+
+getnum(){
+getrobotname $1
+}
+
+forward(){
+    ssh -D 1081 $SF_USR@v-$(getrobotname $1).swarmfarm.com
+}
 
 #apt update and reload aliases
 reload(){
@@ -82,7 +93,10 @@ reload(){
 ### PLOTTING ROS TOPICS
 
 ### Robot Gps Heading
-alias heading='rqt_plot /SwarmbotLocalisation/gps/fix/heading_track_over_ground /SwarmbotLocalisation/gps/fix/dual_antenna_heading /SwarmbotLocalisation/gps/fix/heading/data'
+heading(){
+    ros-access-client -f $ZT_IP $(getrobotname $1)
+    rqt_plot /SwarmbotLocalisation/gps/fix/heading_track_over_ground /SwarmbotLocalisation/gps/fix/dual_antenna_heading /SwarmbotLocalisation/gps/fix/heading/data
+}
 
 ### Attatchment Spray Pressure
 alias a-press='rqt_plot /SwarmbotAttachments/sprayer_v1/spray_pressure /SwarmbotAttachments/sprayer_v1/spray_pressure_reference'
