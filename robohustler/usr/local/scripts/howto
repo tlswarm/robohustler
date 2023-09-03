@@ -1,12 +1,10 @@
 #!/bin/bash
-#!/bin/bash
 echo "----------------------------------------------------------------------"
 echo " REMINDERS"
 echo "----------------------------------------------------------------------"
-echo "To stream data login first"
-echo "To access GPS, Teltonika, Mikrotik, forward first"
-echo "To get data connect first"
-echo "To plot data get data first"
+echo "To access GPS, Teltonika, Mikrotik, you have to forward first"
+echo "To get data connect first then open a new terminal"
+echo "To plot data get data first then navigate using cd <directory> ls <directory>"
 echo "<robot> means insert robot number"
 echo "----------------------------------------------------------------------"
 echo "FUNCTIONS"

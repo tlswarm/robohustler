@@ -1,33 +1,5 @@
 #!/bin/bash
 
-check_ssh_agent() {
-  local ssh_dir="$HOME/.ssh"
-
-  # Get a list of files starting with 'id' and not ending with 'pub', '_backup', or '_bak'
-  local key_files=()
-  while IFS= read -r -d '' file; do
-    key_files+=("$file")
-  done < <(find "$ssh_dir" -type f -name 'id*' ! -name '*pub' ! -name '*_backup' ! -name '*_bak' -print0)
-
-  # Check if each key file is added to the SSH agent
-  for key_file in "${key_files[@]}"; do
-    # Extract the key name from the file path
-    local key_name="${key_file##*/}"
-
-    # Check if the key is already added to the SSH agent
-    if ssh-add -l | grep -q "$key_name"; then
-      echo "Key '$key_name' is already added to the SSH agent."
-    else
-      # Add the key to the SSH agent
-      if ssh-add "$key_file"; then
-        echo "Key '$key_name' added to the SSH agent."
-      else
-        echo "Failed to add key '$key_name' to the SSH agent."
-      fi
-    fi
-  done
-}
-
 source /opt/ros/noetic/setup.bash
 
 export current_user=$(whoami)
@@ -98,7 +70,27 @@ drive(){
 }
 
 reload(){
-    sudo apt update
+
+read -r -p "Press Enter to continue or Ctrl+C to cancel...you will lose your current terminal if you continue" userInput
+
+if [ -z "$userInput" ]; then
+  echo "Continuing..."
+else
+  echo "Operation canceled."
+  exit 1
+fi
+
+countdown=5
+
+while [ "$countdown" -gt 0 ]; do
+  echo -n "$countdown... "
+  sleep 1
+  countdown=$((countdown - 1))
+done
+
+if [ -z "$userInput" ]; then
+  echo "Continuing..."
+      sudo apt update
   
     cd /tmp/
 
@@ -107,9 +99,13 @@ reload(){
     fi
 
 
-    git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb && cd && sudo rm -r /tmp/robohustler/
+    git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb && cd && source ~/.bash_aliases && sudo rm -r /tmp/robohustler/    
 
-    source ~/.bashrc
+    else
+
+    echo "Operation canceled."
+
+fi
 
 }
 

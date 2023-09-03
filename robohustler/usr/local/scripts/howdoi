@@ -1,10 +1,23 @@
 #!/bin/bash
 
-# Iterate over all command-line arguments
+# Function to display usage instructions
+usage() {
+  echo "Usage: howdoi <search-string>"
+  echo "Options:"
+  echo "  -h, --help    Display this help message"
+  exit 1
+}
+
+# Check if the user provided the -h or --help argument
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  usage
+fi
+
+# Iterate over all command-line arguments (excluding options)
 for arg in "$@"; do
-    # Concatenate the current argument to the string
-    concatenated_string="$concatenated_string $arg"
+  # Concatenate the current argument to the search string
+  concatenated_string="$concatenated_string $arg"
 done
 
-
-howto | grep $concatenated_string
+# Perform the desired action, e.g., using 'howto' to search
+howto | grep "$concatenated_string"
