@@ -9,6 +9,7 @@ export SF_USR="$current_user"
 export ZT_IP=<zerotier.ip>
 
 trav() {
+    swarmfarm-auth-login
     swarmfarm-route-analyser -c
 }
 
