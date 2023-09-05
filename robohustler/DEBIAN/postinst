@@ -10,22 +10,20 @@ function handle_exit {
 aliasfile_path="./usr/local/configs/aliasfile"
 percep_path="./usr/local/configs/perception.rviz"
 binaries_path="./usr/local/scripts/"
+search_string="export ZT_IP=<zerotier.ip>"
 
-# Function to handle exit
-handle_exit() {
-    echo "Exiting..."
-    exit 1
-}
+# Get the user's home directory
+user_home_dir="$HOME"
 
-# Check if ZT_IP is set in the environment
 
-    if grep -q "^export ZT_IP=" ~/.bash_aliases; then
-        zerotier_ip=$(grep "^export ZT_IP=" ~/.bash_aliases | cut -d= -f2)
-        echo "ZeroTier IP: $zerotier_ip"
-    else
-        echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
 
-        while true; do
+# Check if .bash_aliases exists and does NOT contain the search string
+if [ ! -f "$user_home_dir/.bash_aliases" ] || grep -q "$search_string" "$user_home_dir/.bash_aliases"; then
+
+    echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
+    echo "How to find IP: www.swarmfarm.com"
+
+    while true; do
             read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
             if [ "$zerotier_ip" = "exit" ]; then
                 handle_exit
@@ -33,16 +31,14 @@ handle_exit() {
             if [[ ! $zerotier_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
                 echo "Invalid IP format. Please install ZeroTier, get your IP, and enter it."
             else
-                # If a valid IP is entered, save it to ~/.bash_aliases
-                echo "export ZT_IP=$zerotier_ip" >> ~/.bash_aliases
-                script-y  # Replace 'script-y' with the command you want to run if ZT_IP is not set
-                break
+                break  # Exit the loop if a valid IP is entered
             fi
-        done
-    fi
+    done    
+    
 
-
-
+else
+    zerotier_ip = $ZT_IP
+fi
 
 logged_in_user="$SUDO_USER"
 
