@@ -101,9 +101,4 @@ echo "Installation completed!"
 echo "Welcome to robo hustler!"
 echo "Next time you open a terminal just type howdoi followed by a keyword"
 echo "Alternatively type how to for a full usage list"
-echo "This process is not complete. Closing terminal in"
-  for ((i=5; i>=1; i--)); do
-    echo "$i..."
-    sleep 1
-  done
-  exit
+echo "This process is complete. Close terminal, open command prompt, type "wsl --shutdown" and press enter"
