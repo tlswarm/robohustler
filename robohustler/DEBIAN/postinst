@@ -6,6 +6,21 @@ function handle_exit {
     exit 0
 }
 
+while true; do
+  read -p "When reloading robohustler your terminal will close - (proceed/exit): " user_input
+  # Convert user input to lowercase for case-insensitive comparison
+  user_input_lc=$(echo "$user_input" | tr '[:upper:]' '[:lower:]')
+  if [ "$user_input_lc" == "proceed" ]; then
+    echo "Continuing..."
+    break
+  elif [ "$user_input_lc" == "exit" ]; then
+    echo "Exiting..."
+    exit 1
+  else
+    echo "Invalid input. Please type 'proceed' or 'exit'."
+  fi
+done
+
 # Set the path to aliasfile relative to package root
 aliasfile_path="./usr/local/configs/aliasfile"
 percep_path="./usr/local/configs/perception.rviz"
@@ -89,4 +104,9 @@ echo "Installation completed!"
 echo "Welcome to robo hustler!"
 echo "Next time you open a terminal just type howdoi followed by a keyword"
 echo "Alternatively type how to for a full usage list"
-echo "Now type exit and press enter"
+echo "This process is not complete. Closing terminal in"
+  for ((i=5; i>=1; i--)); do
+    echo "$i..."
+    sleep 1
+  done
+  exit
