@@ -17,8 +17,8 @@ user_home_dir="$HOME"
 
 
 
-# Check if .bash_aliases exists and does NOT contain the search string
-if [ ! -f "$user_home_dir/.bash_aliases" ] || grep -q "$search_string" "$user_home_dir/.bash_aliases"; then
+# Check if the .bash_aliases file doesn't exist or doesn't contain the string ZT_IP=172
+if [ ! -e "$bash_aliases_file" ] || ! grep -q "ZT_IP=172" "$bash_aliases_file"; then
 
     echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
     echo "How to find IP: www.swarmfarm.com"
