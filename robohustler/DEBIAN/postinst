@@ -40,10 +40,6 @@ if [ ! -f "$user_home_dir/.bash_aliases" ] || ! grep -q "$search_string" "$user_
     echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
     echo "How to find IP: www.swarmfarm.com"
 
-    
-        echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
-        echo "How to find IP: www.swarmfarm.com"
-
     while true; do
             read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
             if [ "$zerotier_ip" = "exit" ]; then
