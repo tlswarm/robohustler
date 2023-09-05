@@ -7,7 +7,7 @@ function handle_exit {
 }
 
 while true; do
-  read -p "When reloading robohustler your terminal will close - (proceed/exit): " user_input
+  read -p "If you proceed your terminal will close when finished - (proceed/exit): " user_input
   # Convert user input to lowercase for case-insensitive comparison
   user_input_lc=$(echo "$user_input" | tr '[:upper:]' '[:lower:]')
   if [ "$user_input_lc" == "proceed" ]; then

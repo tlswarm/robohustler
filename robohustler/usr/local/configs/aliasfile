@@ -124,7 +124,7 @@ if [ -z "$userInput" ]; then
     fi
 
 
-    git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb && cd && source ~/.bash_aliases && sudo rm -r /tmp/robohustler/    
+    git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb && cd && source ~/.bash_aliases 
 
     else
 
