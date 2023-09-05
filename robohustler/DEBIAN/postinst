@@ -32,11 +32,8 @@ search_string="export ZT_IP=<zerotier.ip>"
 # Get the user's home directory
 user_home_dir="$HOME"
 
-
-
 # Check if .bash_aliases exists and does NOT contain the search string
-if [ ! -f "$user_home_dir/.bash_aliases" ] || ! grep -q "$search_string" "$user_home_dir/.bash_aliases"; then
-
+if [ -f "$user_home_dir/.bash_aliases" ] && ! grep -q "$search_string" "$user_home_dir/.bash_aliases"; then
     echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
     echo "How to find IP: www.swarmfarm.com"
 
@@ -57,12 +54,9 @@ if [ ! -f "$user_home_dir/.bash_aliases" ] || ! grep -q "$search_string" "$user_
     done    
     
 
-else
-    zerotier_ip = $ZT_IP
+    # Replace ZeroTier IP placeholder in the alias content
+    alias_content=$(cat "$aliasfile_path" | sed "s/<zerotier.ip>/$zerotier_ip/g")
 fi
-echo "running"
-# Replace ZeroTier IP placeholder in the alias content
-alias_content=$(cat "$aliasfile_path" | sed "s/<zerotier.ip>/$zerotier_ip/g")
 
 user_home="/home/$logged_in_user"
 bash_aliases="$user_home/.bash_aliases"
@@ -71,8 +65,6 @@ if [ -f "$bash_aliases" ]; then
     mv "$bash_aliases" "$bash_aliases.backup"
 fi
 
-echo $alias_content
-
 echo "$alias_content" > "$bash_aliases"
 
 if [ $? -eq 0 ]; then
@@ -80,7 +72,7 @@ if [ $? -eq 0 ]; then
 else
     echo "Error updating alias file."
 fi
-echo "running"
+
 # Specify the full path for copying binaries within package root
 for executable in "$binaries_path"*; do
     if [ -f "$executable" ]; then
@@ -103,10 +95,15 @@ if [ -f "$bash_aliases" ]; then
 else
     echo "bash_aliases not found."
 fi
-echo "running"
+
 # Welcome message with usage instructions
 echo "Installation completed!"
 echo "Welcome to robo hustler!"
 echo "Next time you open a terminal just type howdoi followed by a keyword"
 echo "Alternatively type how to for a full usage list"
-echo "This process is complete. Close terminal, open command prompt, type "wsl --shutdown" and press enter"
+echo "This process is not complete. Closing terminal in"
+  for ((i=5; i>=1; i--)); do
+    echo "$i..."
+    sleep 1
+  done
+  exit
