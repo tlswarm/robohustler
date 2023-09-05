@@ -123,8 +123,15 @@ if [ -z "$userInput" ]; then
         sudo rm -r "/tmp/robohustler/"
     fi
 
+    if [ -d "/tmp/bootstrapper/" ]; then
+        sudo rm -r "/tmp/bootstrapper/"
+    fi
 
     git clone git@github.com:tlswarm/robohustler.git && sudo dpkg -i /tmp/robohustler/robohustler.deb && cd && source ~/.bash_aliases 
+
+    if [ -d "/tmp/robohustler/" ]; then
+        sudo rm -r "/tmp/robohustler/"
+    fi
 
     else
 
