@@ -42,33 +42,26 @@ search_string="export ZT_IP=<zerotier.ip>"
 # Get the user's home directory
 user_home_dir="$HOME"
 
-# Check if .bash_aliases exists
+# Check if .bash_aliases exists and does NOT contain the search string
 if [ -f "$user_home_dir/.bash_aliases" ] && ! grep -q "$search_string" "$user_home_dir/.bash_aliases"; then
+    echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
+    echo "How to find IP: www.swarmfarm.com"
 
-        echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
-        echo "How to find IP: www.swarmfarm.com"
-
-        while true; do
-            read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
-            if [ "$zerotier_ip" = "exit" ]; then
-                handle_exit
-            fi
-            if [[ ! $zerotier_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-                echo "Invalid IP format. Please install ZeroTier, get your IP, and enter it."
-            else
-                break  # Exit the loop if a valid IP is entered
-            fi
-        done
-    
-
+    while true; do
+        read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
+        if [ "$zerotier_ip" = "exit" ]; then
+            handle_exit
+        fi
+        if [[ ! $zerotier_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid IP format. Please install ZeroTier, get your IP, and enter it."
+        else
+            break  # Exit the loop if a valid IP is entered
+        fi
+    done
 
     # Replace ZeroTier IP placeholder in the alias content
     alias_content=$(echo "$alias_content" | sed "s/<zerotier.ip>/$zerotier_ip/g")
-    
-    
 fi
-
-
 
 
 user_home="/home/$logged_in_user"
