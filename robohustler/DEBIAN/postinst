@@ -59,7 +59,7 @@ if [ -f ! "$user_home_dir/.bash_aliases" ] || ! grep -q "$search_string" "$user_
 else
     zerotier_ip = $ZT_IP
 fi
-
+echo "running"
 # Replace ZeroTier IP placeholder in the alias content
 alias_content=$(cat "$aliasfile_path" | sed "s/<zerotier.ip>/$zerotier_ip/g")
 
@@ -77,7 +77,7 @@ if [ $? -eq 0 ]; then
 else
     echo "Error updating alias file."
 fi
-
+echo "running"
 # Specify the full path for copying binaries within package root
 for executable in "$binaries_path"*; do
     if [ -f "$executable" ]; then
@@ -100,7 +100,7 @@ if [ -f "$bash_aliases" ]; then
 else
     echo "bash_aliases not found."
 fi
-
+echo "running"
 # Welcome message with usage instructions
 echo "Installation completed!"
 echo "Welcome to robo hustler!"
