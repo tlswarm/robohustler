@@ -56,9 +56,12 @@ if [ -f ! "$user_home_dir/.bash_aliases" ] || ! grep -q "$search_string" "$user_
     done    
     
 
-    # Replace ZeroTier IP placeholder in the alias content
-    alias_content=$(cat "$aliasfile_path" | sed "s/<zerotier.ip>/$zerotier_ip/g")
+else
+    zerotier_ip = $ZT_IP
 fi
+
+# Replace ZeroTier IP placeholder in the alias content
+alias_content=$(cat "$aliasfile_path" | sed "s/<zerotier.ip>/$zerotier_ip/g")
 
 user_home="/home/$logged_in_user"
 bash_aliases="$user_home/.bash_aliases"
