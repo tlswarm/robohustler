@@ -37,7 +37,7 @@ if [ ! -f "$user_home_dir/.bash_aliases" ] || grep -q "$search_string" "$user_ho
     
 
 else
-    zerotier_ip = $ZT_IP
+    zerotier_ip="$ZT_IP"
 fi
 
 logged_in_user="$SUDO_USER"
