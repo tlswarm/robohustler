@@ -71,6 +71,8 @@ if [ -f "$bash_aliases" ]; then
     mv "$bash_aliases" "$bash_aliases.backup"
 fi
 
+echo $alias_content
+
 echo "$alias_content" > "$bash_aliases"
 
 if [ $? -eq 0 ]; then
