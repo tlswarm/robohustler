@@ -1,29 +1,33 @@
 #!/bin/bash
 
-#sets agent invironment
-env=~/.ssh/agent.env
+###ssh-add
+check_ssh_agent() {
+  local ssh_dir="$HOME/.ssh"
 
-### checks if agent is active
-agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+  # Get a list of files starting with 'id' and not ending with 'pub', '_backup', or '_bak'
+  local key_files=()
+  while IFS= read -r -d '' file; do
+    key_files+=("$file")
+  done < <(find "$ssh_dir" -type f -name 'id*' ! -name '*pub' ! -name '*_backup' ! -name '*_bak' -print0)
 
-### tries to start agent
-agent_start () {
-    (umask 077; ssh-agent >| "$env")
-    . "$env" >| /dev/null ; }
+  # Check if each key file is added to the SSH agent
+  for key_file in "${key_files[@]}"; do
+    # Extract the key name from the file path
+    local key_name="${key_file##*/}"
 
-agent_load_env
-
-# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
-agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
-
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
-    ssh-add ~/.ssh/id_ed25519
-elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
-    ssh-add ~/.ssh/id_ed25519
-fi
-
-unset env
+    # Check if the key is already added to the SSH agent
+    if ssh-add -l | grep -q "$key_name"; then
+      echo "Key '$key_name' is already added to the SSH agent."
+    else
+      # Add the key to the SSH agent
+      if ssh-add "$key_file"; then
+        echo "Key '$key_name' added to the SSH agent."
+      else
+        echo "Failed to add key '$key_name' to the SSH agent."
+      fi
+    fi
+  done
+}
 
 source /opt/ros/noetic/setup.bash
 
