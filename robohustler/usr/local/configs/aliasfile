@@ -65,20 +65,6 @@ getnum(){
 getrobotname $1
 }
 
-Clogdir(){
-    cd ~/logs/sb-00$1/$2/CAN
-    ls -la
-}
-
-Jlogdir(){
-    cd ~/logs/sb-00$1/$2/journal
-    ls -la
-}
-
-read-journal(){
-    cat <journalfile>
-}
-
 forward(){
     ssh -D 1081 $SF_USR@v-$(getrobotname $1).swarmfarm.com
 }
