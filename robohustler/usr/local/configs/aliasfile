@@ -57,6 +57,8 @@ alias sfalogin='swarmfarm-auth-login'
 
 alias plot='plot_can'
 
+alias logs='cd /home/$SF_USR/logs'
+
 checkon(){
 sfany ping $@ -i
 }
