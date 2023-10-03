@@ -97,7 +97,7 @@ drive(){
     rqt_plot /SwarmbotPlcController/drive_velocity_command /SwarmbotPlcController/hardware_responses/wheel_linear_vel_average /SwarmbotLocalisation/gps/fix/velocities/ground
 }
 
-logdir() {
+logsdir() {
     # Function to pad an argument with leading zeros to make it 4 characters in length
     pad_to_4_digits() {
         local arg="$1"
@@ -115,10 +115,13 @@ logdir() {
 
     # Function to display the help menu
     show_help() {
-        echo "Usage: logdir <robotno> <ticketno> <datadir>"
-        echo "logdir 20 4094"
-        echo "will get you"
-        echo " robot:sb20 ticket:4094 data:CAN"
+        echo "Usage: $0 <YEAR> <STRING> <CAN>"
+        echo "Change to a directory with the specified arguments."
+        echo "YEAR should be a 4-digit integer (padded with 0 if necessary)."
+        echo "STRING can be any string."
+        echo "CAN, if passed as 'can', will be converted to uppercase."
+        echo "Options:"
+        echo "  -h, --help    Display this help message and exit."
     }
 
     # Check for the help option
