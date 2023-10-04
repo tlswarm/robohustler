@@ -97,7 +97,7 @@ drive(){
     rqt_plot /SwarmbotPlcController/drive_velocity_command /SwarmbotPlcController/hardware_responses/wheel_linear_vel_average /SwarmbotLocalisation/gps/fix/velocities/ground
 }
 
-logsdir1() {
+logsdir() {
     # Function to pad an argument with leading zeros to make it 4 characters in length
     pad_to_4_digits() {
         local arg="$1"
