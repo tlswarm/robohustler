@@ -50,6 +50,10 @@ alias plot='plot_can'
 
 alias logs='cd /home/$SF_USR/logs'
 
+gd(){
+getdata $1 -$2 -w $3h -t "$4" --tag $5
+}
+
 checkon(){
 sfany ping $@ -i
 }
