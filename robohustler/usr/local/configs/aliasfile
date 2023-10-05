@@ -54,11 +54,6 @@ gd(){
 getdata $1 -$2 -w $3 -t "$4" --tag $5
 }
 
-recordbag(){
-    ros-access-client -f $ZT_IP $(getrobotname $1) 
-    rosbag record -a
-}
-
 checkon(){
 sfany ping $@ -i
 }
