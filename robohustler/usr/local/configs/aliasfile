@@ -51,7 +51,7 @@ alias plot='plot_can'
 alias logs='cd /home/$SF_USR/logs'
 
 gd(){
-getdata $1 -$2 -w $3h -t "$4" --tag $5
+getdata $1 -$2 -w $3 -t "$4" --tag $5
 }
 
 checkon(){
@@ -131,7 +131,6 @@ logsdir() {
         return 0
     fi
 
-    
     local log_dir="$HOME/logs/sb-$(pad_to_4_digits "$1")/$2/$(convert_to_uppercase "$3")"
 
     # Check if the directory exists
@@ -140,18 +139,13 @@ logsdir() {
         log_dir=$(realpath "$log_dir")
         echo "Changed to: $log_dir"
     else
-        local missing_dir="$log_dir"
-        while [ ! -d "$missing_dir" ] && [ "$missing_dir" != "$HOME/logs" ]; do
-            missing_dir=$(dirname "$missing_dir")
-        done
-        if [ "$missing_dir" = "$HOME/logs" ]; then
-            echo "Error: Directory does not exist."
-        else
-            echo "Error: Missing directories beyond '$missing_dir'."
-        fi
+        local parent_dir="$HOME/logs/sb-$(pad_to_4_digits "$1")"
+        echo "Error: Directory does not exist. Listing contents of '$parent_dir':"
+        ls "$parent_dir"
         return 1
     fi
 }
+
 
 
 reload(){
