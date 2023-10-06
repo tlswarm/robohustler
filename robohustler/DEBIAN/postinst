@@ -61,7 +61,7 @@ func() {
         done
     fi
 
-export zerotier_ip="$ZT_IP"
+export zerotier_ip="172.22.36.118"
 
 }
 
