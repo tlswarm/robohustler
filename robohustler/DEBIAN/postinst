@@ -34,13 +34,14 @@ getzt(){
 }    
 
 
+checkzt(){
+# Define the path to the ~/.bash_aliases file
+aliases_file="$HOME/.bash_aliases"
+
 # Check if the file exists
 if [ -e "$aliases_file" ]; then
     # Use grep to search for an IP address pattern in the file
     if grep -qE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$aliases_file"; then
-        # IP address found, so output it
-        echo "IP found in $aliases_file:"
-        grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$aliases_file"
         zerotier_ip="$ZT_IP"
     else
         # No IP address found
@@ -52,8 +53,9 @@ else
     echo "File $aliases_file does not exist."
     getzt
 fi
-
 }
+
+checkzt
 
 logged_in_user="$SUDO_USER"
 
