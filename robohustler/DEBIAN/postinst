@@ -16,10 +16,7 @@ search_string="export ZT_IP=<zerotier.ip>"
 user_home_dir="$HOME"
 
 
-
-# Check if the .bash_aliases file doesn't exist or doesn't contain the string ZT_IP=172
-if [ ! -e "$bash_aliases_file" ] || ! grep -Eq ".*ZT_IP=172.*" "$bash_aliases_file"; then
-
+getzt(){
     echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
     echo "How to find IP: www.swarmfarm.com"
 
@@ -34,11 +31,31 @@ if [ ! -e "$bash_aliases_file" ] || ! grep -Eq ".*ZT_IP=172.*" "$bash_aliases_fi
                 break  # Exit the loop if a valid IP is entered
             fi
     done    
-    
+}    
 
+
+checkzt(){
+# Define the path to the ~/.bash_aliases file
+aliases_file="$HOME/.bash_aliases"
+
+# Check if the file exists
+if [ -e "$aliases_file" ]; then
+    # Use grep to search for an IP address pattern in the file
+    if grep -qE '\b(1\.2\.3\.4|5\.6\.7\.8)\b' "$aliases_file"; then
+        zerotier_ip=grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$aliases_file"
+    else
+        # No IP address found
+        echo "No IP found in $aliases_file"
+        getzt
+    fi
 else
-    zerotier_ip="$ZT_IP"
+    # File does not exist
+    echo "File $aliases_file does not exist."
+    getzt
 fi
+}
+
+checkzt
 
 logged_in_user="$SUDO_USER"
 
