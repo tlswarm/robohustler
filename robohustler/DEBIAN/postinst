@@ -51,6 +51,7 @@ if [ -e "$aliases_file" ]; then
 else
     # File does not exist
     echo "File $aliases_file does not exist."
+    getzt
 fi
 
 logged_in_user="$SUDO_USER"
