@@ -42,7 +42,7 @@ aliases_file="$HOME/.bash_aliases"
 if [ -e "$aliases_file" ]; then
     # Use grep to search for an IP address pattern in the file
     if grep -qE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$aliases_file"; then
-        zerotier_ip=grep -qE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$aliases_file"
+        zerotier_ip=grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' "$aliases_file"
     else
         # No IP address found
         echo "No IP found in $aliases_file"
