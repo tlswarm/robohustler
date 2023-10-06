@@ -16,7 +16,7 @@ search_string="export ZT_IP=<zerotier.ip>"
 user_home_dir="$HOME"
 
 
-getzt{
+getzt(){
     echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
     echo "How to find IP: www.swarmfarm.com"
 
