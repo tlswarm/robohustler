@@ -12,15 +12,19 @@ percep_path="./usr/local/configs/perception.rviz"
 binaries_path="./usr/local/scripts/"
 search_string="export ZT_IP=<zerotier.ip>"
 
+
 # Get the user's home directory
-user_home_dir="$HOME"
+    user_home_dir="$HOME"
+    
+    # Define the path to the .bash_aliases file
+    bash_aliases_file="$user_home_dir/.bash_aliases"
+    
+    # Check if the .bash_aliases file doesn't exist or doesn't contain the string ZT_IP=172
+    if [ ! -e "$bash_aliases_file" ] || ! grep -Eq ".*ZT_IP=172.*" "$bash_aliases_file"; then
+        echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
+        echo "How to find IP: www.swarmfarm.com"
 
-
-getzt(){
-    echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
-    echo "How to find IP: www.swarmfarm.com"
-
-    while true; do
+        while true; do
             read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
             if [ "$zerotier_ip" = "exit" ]; then
                 handle_exit
@@ -30,36 +34,10 @@ getzt(){
             else
                 break  # Exit the loop if a valid IP is entered
             fi
-    done    
-}    
-
-checkzt(){
-# Define the path to the ~/.bash_aliases file
-aliases_file="$HOME/.bash_aliases"
-
-ip_pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$"
-
-# Check if the file exists
-if [ -e "$aliases_file" ]; then
-    # Use grep to search for an IP address pattern in the file
-    
-
-    # Check if zt_ip matches the IP pattern
-    if [[ $ZT_IP =~ $ip_pattern ]]; then
-        zerotier_ip="$ZT_IP"
+        done    
     else
-        # No IP address found
-        echo "No IP found in $aliases_file"
-        getzt
+        zerotier_ip="$ZT_IP"
     fi
-else
-    # File does not exist
-    echo "File $aliases_file does not exist."
-    getzt
-fi
-}
-
-checkzt
 
 logged_in_user="$SUDO_USER"
 
