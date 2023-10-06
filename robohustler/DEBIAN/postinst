@@ -12,43 +12,18 @@ percep_path="./usr/local/configs/perception.rviz"
 binaries_path="./usr/local/scripts/"
 search_string="export ZT_IP=<zerotier.ip>"
 
-func() {
-    # Get the user's home directory
-    user_home_dir="$HOME"
+# Get the user's home directory
+user_home_dir="$HOME"
 
-    # Define the path to the .bash_aliases file
-    bash_aliases_file="$user_home_dir/.bash_aliases"
 
-    # Check if the .bash_aliases file exists and is readable
-    if [ -r "$bash_aliases_file" ]; then
-        # Use grep to search for a line containing "ZT_IP=" in the file
-        ip_line=$(grep -E "ZT_IP=" "$bash_aliases_file")
 
-        # Check if an IP line was found
-        if [ -n "$ip_line" ]; then
-            # Extract the IP value from the line
-            zerotier_ip=$(echo "$ip_line" | sed 's/.*ZT_IP=//')
-        else
-            # No IP line found, ask the user for input
-            echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
-            echo "How to find IP: www.swarmfarm.com"
-            while true; do
-                read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
-                if [ "$zerotier_ip" = "exit" ]; then
-                    handle_exit
-                fi
-                if [[ ! $zerotier_ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-                    echo "Invalid IP format. Please install ZeroTier, get your IP, and enter it."
-                else
-                    break  # Exit the loop if a valid IP is entered
-                fi
-            done
-        fi
-    else
-        # File doesn't exist or is not readable, ask the user for input
-        echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
-        echo "How to find IP: www.swarmfarm.com"
-        while true; do
+# Check if the .bash_aliases file doesn't exist or doesn't contain the string ZT_IP=172
+if is_valid_ip "$ZT_IP"; then
+
+    echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
+    echo "How to find IP: www.swarmfarm.com"
+
+    while true; do
             read -p "Enter your ZeroTier IP or type 'exit' to quit: " zerotier_ip
             if [ "$zerotier_ip" = "exit" ]; then
                 handle_exit
@@ -58,19 +33,13 @@ func() {
             else
                 break  # Exit the loop if a valid IP is entered
             fi
-        done
-    fi
-
-export zerotier_ip="172.22.36.119"
-
-}
-
-
-
-# Get the user's home directory
-    user_home_dir="$HOME"
+    done    
     
-    
+
+else
+    zerotier_ip="$ZT_IP"
+fi
+
 logged_in_user="$SUDO_USER"
 
 alias_content=$(cat "$aliasfile_path")
