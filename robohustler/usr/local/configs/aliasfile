@@ -7,6 +7,10 @@ env=~/.ssh/agent.env
 ###checks if agent is active
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
 
+# Define the file path
+file_path="/root/.ssh/agent.env"
+
+
 ###tries to start agent
 agent_start () {
     (umask 077; ssh-agent >| "$env")
@@ -18,7 +22,12 @@ agent_load_env
 agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
 
 if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
+    # Check if the file exists
+    if [ -e "$file_path" ]; then
+        agent_start
+    else
+        
+    fi
     ssh-add ~/.ssh/id_ed25519
 elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
     ssh-add ~/.ssh/id_ed25519
