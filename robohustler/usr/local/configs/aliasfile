@@ -1,17 +1,11 @@
 #!/bin/bash
 
-export ZT_IP=<zerotier.ip>
-
 ###ssh-add
 #sets agent invironment
 env=~/.ssh/agent.env
 
 ###checks if agent is active
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
-
-# Define the file path
-file_path="/root/.ssh/agent.env"
-
 
 ###tries to start agent
 agent_start () {
@@ -24,10 +18,7 @@ agent_load_env
 agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
 
 if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    # Check if the file exists
-    if [ -e "$file_path" ]; then
-        agent_start
-    fi
+    agent_start
     ssh-add ~/.ssh/id_ed25519
 elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
     ssh-add ~/.ssh/id_ed25519
@@ -40,6 +31,8 @@ source /opt/ros/noetic/setup.bash
 export current_user=$(whoami)
 
 export SF_USR="$current_user"
+
+export ZT_IP=<zerotier.ip>
 
 trav() {
     swarmfarm-route-analyser -c
@@ -285,20 +278,4 @@ copy() {
 
 	echo "rsync --progress --compress $(getrobotstring $1 $args):$path$3 $4"
 	rsync --progress --compress $(getrobotstring $1 $args):$path$3 $4
-}
-
-synctime(){
-    sudo ntpdate pool.ntp.org
-}
-
-copy-from-robot(){
-             args=$(get_args $@)
-         nonargs=$(clear_args $@)
-
-        set -- $nonargs
-
-         path=$(get_dir $2)
-
-        echo "rsync --compress --progress $(getrobotstring $1 $args):$path$3 $4"
-        rsync --progress $(getrobotstring $1 $args):$path$3 $4 --partial
 }

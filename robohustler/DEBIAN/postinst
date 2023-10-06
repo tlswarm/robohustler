@@ -18,7 +18,7 @@ user_home_dir="$HOME"
 
 
 # Check if the .bash_aliases file doesn't exist or doesn't contain the string ZT_IP=172
-if is_valid_ip "$ZT_IP"; then
+if [ ! -e "$bash_aliases_file" ] || ! grep -Eq ".*ZT_IP=172.*" "$bash_aliases_file"; then
 
     echo "Instructions: System Tray > Right-click ZeroTier > Click 'Swarm' > Farm Devices > Managed addresses"
     echo "How to find IP: www.swarmfarm.com"
@@ -37,7 +37,7 @@ if is_valid_ip "$ZT_IP"; then
     
 
 else
-    zerotier_ip=$ZT_IP
+    zerotier_ip="$ZT_IP"
 fi
 
 logged_in_user="$SUDO_USER"
