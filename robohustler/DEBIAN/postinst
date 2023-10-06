@@ -33,7 +33,6 @@ getzt(){
     done    
 }    
 
-
 checkzt(){
 # Define the path to the ~/.bash_aliases file
 aliases_file="$HOME/.bash_aliases"

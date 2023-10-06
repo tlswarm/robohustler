@@ -286,3 +286,19 @@ copy() {
 	echo "rsync --progress --compress $(getrobotstring $1 $args):$path$3 $4"
 	rsync --progress --compress $(getrobotstring $1 $args):$path$3 $4
 }
+
+synctime(){
+    sudo ntpdate pool.ntp.org
+}
+
+copy-from-robot(){
+             args=$(get_args $@)
+         nonargs=$(clear_args $@)
+
+        set -- $nonargs
+
+         path=$(get_dir $2)
+
+        echo "rsync --compress --progress $(getrobotstring $1 $args):$path$3 $4"
+        rsync --progress $(getrobotstring $1 $args):$path$3 $4 --partial
+}
