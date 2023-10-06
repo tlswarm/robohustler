@@ -45,7 +45,7 @@ if [ -e "$aliases_file" ]; then
     
 
     # Check if zt_ip matches the IP pattern
-    if [[ $zt_ip =~ $ip_pattern ]]; then
+    if [[ $ZT_IP =~ $ip_pattern ]]; then
         zerotier_ip="$ZT_IP"
     else
         # No IP address found
