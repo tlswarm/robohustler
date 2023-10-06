@@ -37,7 +37,7 @@ if is_valid_ip "$ZT_IP"; then
     
 
 else
-    zerotier_ip="$ZT_IP"
+    zerotier_ip=$ZT_IP
 fi
 
 logged_in_user="$SUDO_USER"
