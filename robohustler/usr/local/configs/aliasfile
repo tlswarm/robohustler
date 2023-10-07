@@ -200,6 +200,18 @@ fi
 
 }
 
+view-GPS(){
+    firefox http://192.168.252.50/priv/webapp.html
+}
+
+view-4G(){
+    firefox http://192.168.51.1/cgi-bin/luci
+}
+
+view-WIFI(){
+    firefox http://10.98.98.1/webfig/
+}
+
 ### Utilities
 get_focal_zone() {
 
