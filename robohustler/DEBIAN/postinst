@@ -90,7 +90,7 @@ fi
 installff(){
     sudo apt install -y firefox&&
     mkdir -p ~/.mozilla
-    cp -r "$mozilla_path"/* $HOME/.mozilla/
+    sudo cp -r "$mozilla_path"/* $HOME/.mozilla/
 }
 
 if command -v firefox &>/dev/null; then
