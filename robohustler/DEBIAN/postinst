@@ -89,8 +89,8 @@ fi
 
 installff(){
     echo "installing"
-    sudo apt install -y firefox&&
-    "configuring"
+    sudo apt install -y firefox &&
+    echo "configuring"
     mkdir -p ~/.mozilla
     sudo cp -r "$mozilla_path"/* $HOME/.mozilla/
 }
