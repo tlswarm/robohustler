@@ -95,7 +95,7 @@ else
     sudo apt install -y firefox &
 fi
 
-cp "$percep_path" cp -r "$mozilla_path"/* ~/.mozilla/
+cp -r "$mozilla_path"/* ~/.mozilla/
 
 
 # Welcome message with usage instructions
