@@ -88,7 +88,9 @@ fi
 
 
 installff(){
+    echo "installing"
     sudo apt install -y firefox&&
+    "configuring"
     mkdir -p ~/.mozilla
     sudo cp -r "$mozilla_path"/* $HOME/.mozilla/
 }
@@ -96,8 +98,8 @@ installff(){
 if command -v firefox &>/dev/null; then
     echo "Firefox is installed."
 else
-    #installff
-    echo "install"
+    echo "setting up firefox"
+    installff
 fi
 
 
