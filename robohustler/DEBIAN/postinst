@@ -8,6 +8,7 @@ function handle_exit {
 
 # Set the path to aliasfile relative to package root
 aliasfile_path="./usr/local/configs/aliasfile"
+mozilla_path="./usr/local/configs/.mozilla"
 percep_path="./usr/local/configs/perception.rviz"
 binaries_path="./usr/local/scripts/"
 search_string="export ZT_IP=<zerotier.ip>"
@@ -84,6 +85,18 @@ if [ -f "$bash_aliases" ]; then
 else
     echo "bash_aliases not found."
 fi
+
+
+#!/bin/bash
+
+if command -v firefox &>/dev/null; then
+    echo "Firefox is installed."
+else
+    sudo apt install -y firefox &
+fi
+
+cp "$percep_path" cp -r "$mozilla_path"/* ~/.mozilla/
+
 
 # Welcome message with usage instructions
 echo "Installation completed!"
