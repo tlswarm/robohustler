@@ -97,6 +97,7 @@ if command -v firefox &>/dev/null; then
     echo "Firefox is installed."
 else
     #installff
+    echo "install"
 fi
 
 
