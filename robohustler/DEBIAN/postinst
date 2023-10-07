@@ -89,14 +89,14 @@ fi
 
 installff(){
     sudo apt install -y firefox&&
-    mkdir -p ~/.mozilla&&
+    mkdir -p ~/.mozilla
     cp -r "$mozilla_path"/* $HOME/.mozilla/
 }
 
 if command -v firefox &>/dev/null; then
     echo "Firefox is installed."
 else
-    installff
+    #installff
 fi
 
 
