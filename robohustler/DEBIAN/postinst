@@ -86,23 +86,6 @@ else
     echo "bash_aliases not found."
 fi
 
-
-installff(){
-    echo "installing"
-    sudo apt install -y firefox &&
-    echo "configuring"
-    mkdir -p ~/.mozilla
-    sudo cp -r "$mozilla_path"/* $HOME/.mozilla/
-}
-
-if command -v firefox &>/dev/null; then
-    echo "Firefox is installed."
-else
-    echo "setting up firefox"
-    installff
-fi
-
-
 # Welcome message with usage instructions
 echo "Installation completed!"
 echo "Welcome to robo hustler!"
