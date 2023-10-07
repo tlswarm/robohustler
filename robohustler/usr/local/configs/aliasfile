@@ -2,7 +2,7 @@
 
 ###ssh-add
 #sets agent invironment
-env=~/.ssh/agent.env
+env=$SUDO_USER/.ssh/agent.env
 
 ###checks if agent is active
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
