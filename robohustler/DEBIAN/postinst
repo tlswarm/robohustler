@@ -87,18 +87,14 @@ else
 fi
 
 
-#!/bin/bash
-
 if command -v firefox &>/dev/null; then
     echo "Firefox is installed."
 else
-    sudo apt install -y firefox &
+    sudo apt install -y firefox&&
+    mkdir -p ~/.mozilla&&
+    cp -r "$mozilla_path"/* ~/.mozilla/&&
 fi
 
-mkdir -p ~/.mozilla
-
-    # Copy the contents of the source directory to ~/.mozilla
-    cp -r "$mozilla_path"/* ~/.mozilla/
 
 
 # Welcome message with usage instructions
