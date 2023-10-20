@@ -8,7 +8,6 @@ function handle_exit {
 
 # Set the path to aliasfile relative to package root
 aliasfile_path="./usr/local/configs/aliasfile"
-mozilla_path="./usr/local/configs/.mozilla"
 percep_path="./usr/local/configs/perception.rviz"
 binaries_path="./usr/local/scripts/"
 search_string="export ZT_IP=<zerotier.ip>"

@@ -132,7 +132,7 @@ logsdir() {
         echo "Usage: logdir <robotno> <ticketno> <datadir>"
         echo "logdir 20 4094"
         echo "will get you"
-        echo " robot:sb20 ticket:4094 data:CAN"
+        echo "robot:sb20 ticket:4094 data:CAN"
     }
 
     # Check for the help option
