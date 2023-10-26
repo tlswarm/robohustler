@@ -86,12 +86,12 @@ heading(){
     rqt_plot /SwarmbotLocalisation/gps/fix/heading_track_over_ground /SwarmbotLocalisation/gps/fix/dual_antenna_heading /SwarmbotLocalisation/gps/fix/heading/data
 }
 
-a-press(){
+spray-pressure(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
-    rqt_plot /SwarmbotAttachments/sprayer_v1/spray_pressure /SwarmbotAttachments/sprayer_v1/spray_pressure_reference
+    rqt_plot /SwarmbotAttachments/sprayer_v1/spray_pressure /SwarmbotAttachments/sprayer_v1/spray_pressure_reference /SwarmbotPlcController/hardware_responses/pump_pressures/current/high_flow
 }
 
-wheels(){
+wheel-encoders(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
     rqt_plot /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_front_right /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_left /SwarmbotPlcController/hardware_responses/wheel_linear_vel_rear_right
 }
