@@ -55,6 +55,8 @@ alias plot='plot_can'
 
 alias logs='cd /home/$SF_USR/logs'
 
+alias timestamp="date -u +"%Y-%m-%dT%H:%M:%SZ""
+
 gd(){
 getdata $1 -$2 -w $3 -t "$4" --tag $5
 }
@@ -103,7 +105,7 @@ d-press(){
 
 steer(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
-    rqt_plot rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle/data /SwarmbotPlatformController/drive/drive_joint_commands/articulation_angle /SwarmbotPlatformController/distance_to_path/current/front/data /SwarmbotPlatformController/distance_to_path/current/rear/data /SwarmbotPlatformController/distance_to_path/average/data
+    rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current/front /SwarmbotPlatformController/distance_to_path/current/rear /SwarmbotPlatformController/distance_to_path/current
 }
 
 drive(){
