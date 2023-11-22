@@ -55,7 +55,7 @@ alias plot='plot_can'
 
 alias logs='cd /home/$SF_USR/logs'
 
-alias timestamp="date -u +"%Y-%m-%dT%H:%M:%SZ""
+alias timestamp="date -u +"%Y-%m-%dT%H:%M:%SZ" | xclip -selection clipboard"
 
 gd(){
 getdata $1 -$2 -w $3 -t "$4" --tag $5

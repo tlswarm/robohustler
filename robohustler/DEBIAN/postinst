@@ -85,6 +85,11 @@ else
     echo "bash_aliases not found."
 fi
 
+echo "installing xclip"
+sudo apt install -y xclip
+echo "xclip installed"
+
+
 # Welcome message with usage instructions
 echo "Installation completed!"
 echo "Welcome to robo hustler!"
