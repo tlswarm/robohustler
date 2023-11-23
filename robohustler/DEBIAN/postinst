@@ -15,7 +15,7 @@ search_string="export ZT_IP=<zerotier.ip>"
 # Get the user's home directory
 user_home_dir="$HOME"
 
-
+echo "deb [arch=$(dpkg --print-architecture),all] https://apt.swarmfarm.com $( . /etc/os-release; echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/swarmfarm.list
 
 # Check if the .bash_aliases file doesn't exist or doesn't contain the string ZT_IP=172
 if [ ! -e "$bash_aliases_file" ] || ! grep -Eq ".*ZT_IP=172.*" "$bash_aliases_file"; then

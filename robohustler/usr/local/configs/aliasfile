@@ -166,7 +166,8 @@ logsdir() {
 
 
 reload(){
-
+    
+    
 read -r -p "Press Enter to continue or Ctrl+C to cancel...you will lose your current terminal if you continue" userInput
 
 if [ -z "$userInput" ]; then
