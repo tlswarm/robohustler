@@ -120,7 +120,7 @@ operating-temps(){
 
 fuel-rate(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
-    rqt_plot /SwarmbotPlcController/hardware_responses/engine_fuel_rate /SwarmbotPlcController/hardware_responses/engine_rp
+    rqt_plot /SwarmbotPlcController/hardware_responses/engine_fuel_rate /SwarmbotPlcController/hardware_responses/engine_rpm
 }
 
 logsdir() {
