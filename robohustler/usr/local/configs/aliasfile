@@ -125,7 +125,7 @@ fuel-rate(){
 
 drive-pressure(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
-    rqt_plot /SwarmbotPlcController/hardware_responses/pump_pressures/average/front_mobility /SwarmbotPlcController/hardware_responses/pump_pressures/current/rear_mobility
+    rqt_plot /SwarmbotPlcController/hardware_responses/pump_pressures/average/front_mobility /SwarmbotPlcController/hardware_responses/pump_pressures/average/rear_mobility
 }
 logsdir() {
     # Function to pad an argument with leading zeros to make it 4 characters in length
