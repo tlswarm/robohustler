@@ -120,13 +120,14 @@ operating-temps(){
 
 fuel-rate(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
-    rqt_plot /SwarmbotPlcController/hardware_responses/engine_fuel_rate /SwarmbotPlcController/hardware_responses/engine_rpm /SwarmbotPayloadInterface/commands/engine_rpm_command
+    rqt_plot /SwarmbotPlcController/hardware_responses/engine_fuel_burn_rate/filtered /SwarmbotPlcController/hardware_responses/engine_rpm /SwarmbotPayloadInterface/commands/engine_rpm_command
 }
 
 drive-pressure(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
-    rqt_plot /SwarmbotPlcController/hardware_responses/pump_pressures/average/front_mobility /SwarmbotPlcController/hardware_responses/pump_pressures/average/rear_mobility
+    rqt_plot /SwarmbotPlcController/hardware_responses/pump_pressures/average/front_mobility /SwarmbotPlcController/hardware_responses/pump_pressures/average/rear_mobility /SwarmbotPlcController/hardware_responses/pump_pressures/current/front_mobility /SwarmbotPlcController/hardware_responses/pump_pressures/current/rear_mobility
 }
+
 logsdir() {
     # Function to pad an argument with leading zeros to make it 4 characters in length
     pad_to_4_digits() {
