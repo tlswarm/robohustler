@@ -105,7 +105,7 @@ d-press(){
 
 steer(){
     ros-access-client -f $ZT_IP $(getrobotname $1)
-    rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle /SwarmbotPlcController/steering_command /SwarmbotPlatformController/distance_to_path/current/front /SwarmbotPlatformController/distance_to_path/current/rear /SwarmbotPlatformController/distance_to_path/current
+    rqt_plot /SwarmbotPlcController/hardware_responses/articulation_angle drive_joint_commands /SwarmbotPlatformController/distance_to_path/current/front /SwarmbotPlatformController/distance_to_path/current/rear /SwarmbotPlatformController/distance_to_path/current
 }
 
 drive(){
